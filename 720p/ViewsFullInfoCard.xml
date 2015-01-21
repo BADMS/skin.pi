@@ -251,6 +251,11 @@
 						</control>
 						<control type="image">
 							<include>ListItemFullInfoThumbSizeNoFilter</include>
+							<texture background="true">$VAR[ListItemVideoPreview]</texture>
+							<visible>Container.PlexContent(Channel)</visible>
+						</control>
+						<control type="image">
+							<include>ListItemFullInfoThumbSizeNoFilter</include>
 							<fadetime>300</fadetime>
 							<aspectratio scalediffuse="false" align="center" aligny="top">scale</aspectratio>
 							<texture background="true">$VAR[ListItemVideoPreview]</texture>
