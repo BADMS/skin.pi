@@ -629,7 +629,342 @@
 			</control>
 		</control>
 	</include>
-	<include name="Animation_CommonFade">
+<!--Wall-->
+<include name="MovieTVPosterWall">
+	<control type="image">
+		<posx>0</posx>
+		<posy>0</posy>
+		<width>128</width>
+		<height>180</height>
+	</control>
+	<control type="image">
+		<posx>0</posx>
+		<posy>0</posy>
+		<width>128</width>
+		<height>180</height>
+		<texture background="true">default-poster-middle.png</texture>
+	</control>
+	<control type="image">
+		<posx>0</posx>
+		<posy>0</posy>
+		<width>128</width>
+		<height>180</height>
+		<texture background="true">$VAR[ListItemVideoPreviewSmall]</texture>
+		<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+	</control>
+</include>
+<include name="MovieTVPosterWallUnwatchedOverlay">
+	<control type="group">
+		<control type="label">
+			<posy>192</posy>
+			<posx>156</posx>
+			<width>90</width>
+			<height>30</height>
+			<align>right</align>
+			<aligny>center</aligny>
+			<label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
+			<font>Light-52</font>
+			<textcolor>white</textcolor>
+			<shadowcolor>FF222222</shadowcolor>
+			<animation effect="fade" start="0" end="100" time="400" condition="true">Conditional</animation>
+			<visible>!Skin.HasSetting(SmallerUnwatchedEpisodes)+!Skin.HasSetting(AltUnwatchedEpisodes)+!Skin.HasSetting(AltUnwatchedEpisodesTop)+!Skin.HasSetting(TVShowOverlayBottom)</visible>
+		</control>
+		<control type="label">
+			<posy>198</posy>
+			<posx>156</posx>
+			<width>90</width>
+			<height>30</height>
+			<align>right</align>
+			<aligny>center</aligny>
+			<label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
+			<font>Light-36</font>
+			<textcolor>white</textcolor>
+			<shadowcolor>FF222222</shadowcolor>
+			<animation effect="fade" start="0" end="100" time="400" condition="true">Conditional</animation>
+			<visible>Skin.HasSetting(SmallerUnwatchedEpisodes)+!Skin.HasSetting(TVShowOverlayBottom)</visible>
+		</control>
+		<control type="group">
+			<visible>Skin.HasSetting(AltUnwatchedEpisodes) | Skin.HasSetting(TVShowOverlayBottom)</visible>
+			<control type="image">
+				<posx>114</posx>
+				<posy>197</posy>
+				<width>45</width>
+				<height>34</height>
+				<texture>unwatchedcount_overlay4.png</texture>
+				<animation effect="fade" start="95" end="95" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="label">
+				<posx>137</posx>
+				<posy>201</posy>
+				<width>40</width>
+				<height>27</height>
+				<label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
+				<font>Regular-18</font>
+				<align>center</align>
+			</control>
+		</control>
+		<control type="group">
+			<visible>Skin.HasSetting(AltUnwatchedEpisodesTop)+!Skin.HasSetting(TVShowOverlayBottom)</visible>
+			<control type="image">
+				<posx>114</posx>
+				<posy>11</posy>
+				<width>45</width>
+				<height>34</height>
+				<texture>unwatchedcount_overlay4.png</texture>
+				<animation effect="fade" start="95" end="95" time="0" condition="true">Conditional</animation>
+			</control>
+			<control type="label">
+				<posx>137</posx>
+				<posy>15</posy>
+				<width>40</width>
+				<height>27</height>
+				<label>$INFO[ListItem.Property(UnWatchedEpisodes)]</label>
+				<font>Regular-18</font>
+				<align>center</align>
+			</control>
+		</control>
+		<visible>[Container.PlexContent(TVShows) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsTVShows)] | [Container.PlexContent(Seasons) + [ListItem.Status(Unwatched) | ListItem.Status(InProgress)] + !Skin.HasSetting(HideUnwatchedIconsTVShows)]</visible>
+	</control>
+	<control type="group">
+		<control type="image">
+			<posx>129</posx>
+			<posy>201</posy>
+			<width>26</width>
+			<height>26</height>
+			<texture>$VAR[ListItemOverlay]</texture>
+		</control>
+	</control>
+</include>
+<include name="MovieTVPosterWallSelectedBorder">
+	<control type="image">
+		<posx>128</posx>
+		<posy>0</posy>
+		<width>256</width>
+		<height>180</height>
+		<texture background="true">candy/selected.png</texture>
+		<colordiffuse>border</colordiffuse>
+	</control>
+	<control type="image">
+		<posx>128</posx>
+		<posy>0</posy>
+		<width>256</width>
+		<height>180</height>
+		<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+		<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+		<fadetime>300</fadetime>
+		<colordiffuse>border</colordiffuse>
+		<visible>!Skin.HasSetting(DisableFanBG)</visible>
+	</control>
+	<control type="group">
+		<posx>128</posx>
+		<control type="group">
+		<visible>!skin.hassetting(disableWallPlot)</visible>
+		<control type="label">
+			<posx>10</posx>
+			<posy>10</posy>
+			<description>Movie Title</description>
+			<width>236</width>
+			<height>26</height>
+			<align>left</align>
+			<label>$INFO[ListItem.Label]$INFO[ListItem.Year, &#xB7; ]</label>
+			<font>Regular-24</font>
+			<scroll>true</scroll>
+			<fadetime>300</fadetime>
+		</control>
+		<control type="label">
+			<description>Duration</description>
+			<posx>10</posx>
+			<posy>40</posy>
+			<label fallback="31047">$INFO[Listitem.duration,,mins ]$INFO[Listitem.Rating, &#xB7; ,/10]</label>
+			<align>left</align>
+			<aligny>center</aligny>
+			<height>30</height>
+			<font>smallCaps</font>
+			<width>236</width>
+			<fadetime>300</fadetime>
+		</control>
+		</control>
+		<control type="group">
+		<visible>skin.hassetting(disableWallPlot)</visible>
+			<posy>104</posy>
+		<control type="label">
+			<posx>10</posx>
+			<posy>10</posy>
+			<description>Movie Title</description>
+			<width>236</width>
+			<height>26</height>
+			<align>left</align>
+			<label>$INFO[ListItem.Label]$INFO[ListItem.Year, &#xB7; ]</label>
+			<font>Regular-24</font>
+			<scroll>true</scroll>
+			<fadetime>300</fadetime>
+		</control>
+		<control type="label">
+			<description>Duration</description>
+			<posx>10</posx>
+			<posy>40</posy>
+			<label fallback="31047">$INFO[Listitem.duration,,mins ]$INFO[Listitem.Rating, &#xB7; ,/10]</label>
+			<align>left</align>
+			<aligny>center</aligny>
+			<height>30</height>
+			<font>smallCaps</font>
+			<width>236</width>
+			<fadetime>300</fadetime>
+		</control>
+		</control>
+		<control type="textbox">
+			<posx>10</posx>
+			<posy>70</posy>
+			<width>236</width>
+			<height>98</height>
+			<font>Regular-18</font>
+			<label>$INFO[Listitem.PlotOutline]</label>
+			<fadetime>300</fadetime>
+			<autoscroll delay="5000" time="1000" repeat="3000"/>
+			<visible>!skin.hassetting(disableWallPlot)</visible>
+		</control>
+	</control>
+	<!--<control type="group">
+		<posx>244</posx>
+		<posy>120</posy>
+		<align>right</align>
+		<control type="image">
+			<width>130</width>
+			<height>50</height>
+			<texture>studiologos/$INFO[Listitem.Property(mediaTag-Studio)].png</texture>
+			<aspectratio align="right" aligny="center">keep</aspectratio>
+			<colordiffuse>mediatag</colordiffuse>
+			<visible>!IsEmpty(Listitem.Property(mediaTag-studio))</visible>
+			<fadetime>300</fadetime>
+		</control>					
+	</control>-->
+	<control type="image">
+		<posx>0</posx>
+		<posy>0</posy>
+		<width>384</width>
+		<height>180</height>
+		<include>Border</include>
+	</control>
+</include>
+<include name="MovieTVPosterWallSelectedBorderLeft">
+	<control type="image">
+		<posx>-256</posx>
+		<posy>0</posy>
+		<width>256</width>
+		<height>180</height>
+		<texture>candy/selected.png</texture>
+		<colordiffuse>border</colordiffuse>
+	</control>
+	<control type="image">
+		<posx>-256</posx>
+		<posy>0</posy>
+		<width>256</width>
+		<height>180</height>
+		<texture background="true">$INFO[ListItem.Art(fanart)]</texture>
+		<aspectratio scalediffuse="false" align="center" aligny="top">stretch</aspectratio>
+		<fadetime>300</fadetime>
+		<colordiffuse>border</colordiffuse>
+		<visible>!Skin.HasSetting(DisableFanBG)</visible>
+	</control>
+	<control type="group">
+		<posx>-256</posx>
+		<control type="group">
+		<visible>!skin.hassetting(disableWallPlot)</visible>
+		<control type="label">
+			<posx>10</posx>
+			<posy>10</posy>
+			<description>Movie Title</description>
+			<width>236</width>
+			<height>26</height>
+			<align>left</align>
+			<label>$INFO[ListItem.Label]$INFO[ListItem.Year, &#xB7; ]</label>
+			<font>Regular-24</font>
+			<scroll>true</scroll>
+			<fadetime>300</fadetime>
+		</control>
+		<control type="label">
+			<description>Duration</description>
+			<posx>10</posx>
+			<posy>40</posy>
+			<label fallback="31047">$INFO[Listitem.duration,,mins ]$INFO[Listitem.Rating, &#xB7; ,/10]</label>
+			<align>left</align>
+			<aligny>center</aligny>
+			<height>30</height>
+			<font>smallCaps</font>
+			<width>236</width>
+			<fadetime>300</fadetime>
+		</control>
+		</control>
+		<control type="group">
+		<visible>skin.hassetting(disableWallPlot)</visible>
+			<posy>104</posy>
+		<control type="label">
+			<posx>10</posx>
+			<posy>10</posy>
+			<description>Movie Title</description>
+			<width>236</width>
+			<height>26</height>
+			<align>left</align>
+			<label>$INFO[ListItem.Label]$INFO[ListItem.Year, &#xB7; ]</label>
+			<font>Regular-24</font>
+			<scroll>true</scroll>
+			<fadetime>300</fadetime>
+		</control>
+		<control type="label">
+			<description>Duration</description>
+			<posx>10</posx>
+			<posy>40</posy>
+			<label fallback="31047">$INFO[Listitem.duration,,mins ]$INFO[Listitem.Rating, &#xB7; ,/10]</label>
+			<align>left</align>
+			<aligny>center</aligny>
+			<height>30</height>
+			<font>smallCaps</font>
+			<width>236</width>
+			<fadetime>300</fadetime>
+		</control>
+		</control>
+		<control type="textbox">
+			<posx>10</posx>
+			<posy>70</posy>
+			<width>236</width>
+			<height>98</height>
+			<font>Regular-18</font>
+			<label>$INFO[Listitem.PlotOutline]</label>
+			<autoscroll delay="5000" time="1000" repeat="3000"/>
+			<fadetime>300</fadetime>
+			<visible>!skin.hassetting(disableWallPlot)</visible>
+		</control>
+	</control>
+	<!--<control type="group">
+		<posx>244</posx>
+		<posy>120</posy>
+		<align>right</align>
+		<control type="image">
+			<width>130</width>
+			<height>50</height>
+			<texture>studiologos/$INFO[Listitem.Property(mediaTag-Studio)].png</texture>
+			<aspectratio align="right" aligny="center">keep</aspectratio>
+			<colordiffuse>mediatag</colordiffuse>
+			<visible>!IsEmpty(Listitem.Property(mediaTag-studio))</visible>
+			<fadetime>300</fadetime>
+		</control>					
+	</control>-->
+	<control type="image">
+		<posx>-256</posx>
+		<posy>0</posy>
+		<width>384</width>
+		<height>180</height>
+		<include>Border</include>
+	</control>
+</include>
+<include name="MovieTVPosterWallSelectedBorderNF">
+	<control type="image">
+		<width>128</width>
+		<height>180</height>
+		<include>BorderNF</include>
+	</control>
+</include>
+<include name="Animation_CommonFade">
 		<animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>
 		<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
 		<animation effect="fade" start="0" end="100" time="200">Visible</animation>
