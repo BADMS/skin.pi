@@ -543,6 +543,11 @@
 						<onclick>Plex.UpdateAndRestart</onclick>
 						<visible>System.UpdateIsAvailable</visible>
 					</item>
+					<item id="1115">
+						<description>Quit</description>
+						<label>Quit</label>
+						<onclick>Quit</onclick>
+					</item>
 				</content>
 			</control>
 		</control>
